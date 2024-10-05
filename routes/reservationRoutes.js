@@ -1,10 +1,14 @@
 const express = require('express');
 const { verifyJWT } = require('../middleware/auth/verifyJWT');
 const { createUser } = require('../controllers/userControllers/registerController');
-const { createRole } = require('../controllers/systemSetupControllers/roleController');
+const { createRole, getRoles } = require('../controllers/systemSetupControllers/roleController');
 const { login } = require('../controllers/userControllers/loginLogoutController');
 const { handleRefreshToken } = require('../controllers/userControllers/refreshTokenController');
 const { getAllUsers } = require('../controllers/userControllers/getUserController');
+const { createDock, getDocks } = require('../controllers/dockControllers/dockController');
+const { createLoadUnloadTime, getLoadUnloadTimes, getSingleLoadUnloadTime } = require('../controllers/loadUnloadTimeControllers/loadUnloadTimeController');
+const { getMaterialStationDefinitions, createMaterialStationDefinition } = require('../controllers/materialStationControllers/materialStationController');
+const { getBookings, createBooking } = require('../controllers/bookingControllers/bookingController');
 
 
 const router = express.Router();
@@ -21,5 +25,20 @@ router.use(verifyJWT);
 router.get("/users", getAllUsers)
 router.post("/user", createUser);
 router.post("/role", createRole);
+router.get("/role", getRoles);
+
+router.post("/dock", createDock);
+router.get("/dock", getDocks)
+
+
+router.post("/loadUnloadTime", createLoadUnloadTime);
+router.get("/loadUnloadTimes", getLoadUnloadTimes)
+router.get("/getSingleLoadUnloadTime", getSingleLoadUnloadTime)
+
+router.post("/materialStation", createMaterialStationDefinition);
+router.get("/materialStation", getMaterialStationDefinitions)
+
+router.post("/booking", createBooking);
+router.get("/booking", getBookings)
 
 module.exports = router;

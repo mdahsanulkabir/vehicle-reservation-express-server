@@ -13,6 +13,7 @@ const createRole = async (req, res) => {
         })
         res.status(200).json(newRole);
     } catch (error) {
+        console.error('Error creating dock:', error);
         res.status(400).json({ error: error.message });
     }
 };
@@ -25,6 +26,7 @@ const getRoles = async (req, res) => {
         const roles = await ROLE.find({})
         res.status(200).json(roles);
     } catch (error) {
+        console.error('Error creating dock:', error);
         res.status(400).json({ error: error.message });
     }
 };

@@ -26,7 +26,7 @@ const handleRefreshToken = async (req, res) => {
                         expiresIn: '10h'
                     }
                 );
-                res.status(200).json({ accessToken, role: user.roleId, userName: user.name, userId: user.userId })
+                res.status(200).json({ accessToken, role: user.roleId, userName: user.name, userId: user.userId, user_id: user._id })
             }
         )
     } catch (err) {
