@@ -11,7 +11,10 @@ const createLoadUnloadTime = async (req, res) => {
         const newLoadUnloadTime = await LOADUNLOADTIME.create({
             containerSize, stationForMaterial, loadedWithPallete, requiredTime
         })
-        res.status(200).json(newLoadUnloadTime);
+        const newLoadUnloadTimeDetail = await LOADUNLOADTIME.findById(newLoadUnloadTime._id)
+            .populate('stationForMaterial')
+            
+        res.status(200).json(newLoadUnloadTimeDetail);
     } catch (error) {
         console.error('Error creating dock:', error);
         res.status(400).json({ error: error.message });

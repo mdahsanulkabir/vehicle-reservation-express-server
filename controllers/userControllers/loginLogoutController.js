@@ -52,8 +52,8 @@ const login = async (req, res) => {
             // console.log({updatedUser})
             res.cookie('jwt', refreshToken, { 
                 httpOnly: true, 
-                sameSite:'None',//sameSite issue creates in front end site because the front and back are not in same domain
-                secure: true, //secure is for https
+                // sameSite:'None',//sameSite issue creates in front end site because the front and back are not in same domain
+                // secure: true, //secure is for https
                 maxAge: 24*60*60*1000}) 
             
             // console.log({accessToken,refreshToken})

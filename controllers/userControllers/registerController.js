@@ -5,22 +5,26 @@ const createUser = async (req, res) => {
     const { name, userId, email, roleId } = req.body;
     if (!userId || !roleId) return res.status(400).json({ 'message': 'userId and roleId are required.' });
 
-    const duplicateUser = await USER.findOne({userId : userId})
+    const duplicateUser = await USER.findOne({ userId: userId })
     if (duplicateUser) return res.status(409).json({ 'message': "Duplicate User found." });
-    
+
     //encrypt the password
     const hashedPassword = await bcrypt.hash("singerBD123!@", 10)
 
     //create and store the new user
     try {
         const newUser = await USER.create({
-            name, 
+            name,
             userId,
             email,
             roleId,
-            password : hashedPassword
+            password: hashedPassword
         })
-        res.status(200).json(newUser);
+
+        const newUser2 = await USER.findById(newUser._id)
+            .populate('roleId')
+            .select('-password -refreshToken');
+        res.status(200).json(newUser2);
     } catch (error) {
         res.status(400).json({ error: error.message });
     }

@@ -49,7 +49,6 @@ const createBooking = async (req, res) => {
 
 //get all roles
 const getBookings = async (req, res) => {
-    // console.log("role in getroles", req.userRole);
     try {
         await dbConnect();
         const docks = await BOOKING.find({})
