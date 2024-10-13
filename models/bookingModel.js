@@ -34,6 +34,18 @@ const bookingSchema = new Schema({
         enum: ['pending', 'confirmed', 'completed', 'canceled'],
         default: 'pending'
     },  // Booking status
+    driverName: {
+        type: String,
+        default: "",
+    },
+    driverContactNumber: {
+        type: Number,
+        default: 0,
+    },
+    vehicleRegistrationNumber: {
+        type: String,
+        default: "",
+    },
 }, { timestamps: true });
 
 module.exports = mongoose.model('BOOKING', bookingSchema);

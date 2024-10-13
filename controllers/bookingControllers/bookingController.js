@@ -12,7 +12,10 @@ const createBooking = async (req, res) => {
         loadUnloadTime, // loadunloadtime id from mongodb
         startTime, // start time requested by user
         endTime,
-        status  //['pending', 'confirmed', 'completed', 'canceled'], default: pending
+        status,  //['pending', 'confirmed', 'completed', 'canceled'], default: pending
+        driverName,
+        driverContactNumber,
+        vehicleRegistrationNumber
     } = req.body;
     //add doc to db
 
@@ -28,7 +31,10 @@ const createBooking = async (req, res) => {
             loadUnloadTime: loadUnload_time, // loadunloadtime id from mongodb
             startTime, // start time requested by user
             endTime,
-            status
+            status,
+            driverName,
+            driverContactNumber,
+            vehicleRegistrationNumber
         })
         const newBooking2 = await BOOKING.findById(newBooking._id)
             .populate('user', '-refreshToken -password')
