@@ -9,6 +9,7 @@ const { createDock, getDocks } = require('../controllers/dockControllers/dockCon
 const { createLoadUnloadTime, getLoadUnloadTimes, getSingleLoadUnloadTime } = require('../controllers/loadUnloadTimeControllers/loadUnloadTimeController');
 const { getMaterialStationDefinitions, createMaterialStationDefinition } = require('../controllers/materialStationControllers/materialStationController');
 const { getBookings, createBooking } = require('../controllers/bookingControllers/bookingController');
+const { changePassword } = require('../controllers/userControllers/changePasswordController');
 
 
 const router = express.Router();
@@ -40,5 +41,7 @@ router.get("/materialStation", getMaterialStationDefinitions)
 
 router.post("/booking", createBooking);
 router.get("/booking", getBookings)
+
+router.post('/change-password', changePassword)
 
 module.exports = router;
