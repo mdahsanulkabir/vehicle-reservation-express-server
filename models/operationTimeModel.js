@@ -11,7 +11,7 @@ const operationTimeSchema = new Schema({
     },
     station: { 
         type: String, 
-        enum: ['A', 'B', 'C','D'], 
+        enum: ['A', 'B', 'C','D', 'E', 'F'], 
         required: true 
     },
     operationStartTime: { 

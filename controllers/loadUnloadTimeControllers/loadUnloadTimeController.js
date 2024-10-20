@@ -13,7 +13,7 @@ const createLoadUnloadTime = async (req, res) => {
         })
         const newLoadUnloadTimeDetail = await LOADUNLOADTIME.findById(newLoadUnloadTime._id)
             .populate('stationForMaterial')
-            
+
         res.status(200).json(newLoadUnloadTimeDetail);
     } catch (error) {
         console.error('Error creating dock:', error);
@@ -52,8 +52,54 @@ const getSingleLoadUnloadTime = async (req, res) => {
     }
 }
 
+const deleteSingleLoadUnloadTime = async (req, res) => {
+    const { id } = req.query;
+    try {
+        await dbConnect();
+        const deletedLoadUnloadTime = await LOADUNLOADTIME.findOneAndDelete({
+            _id: id
+        }).populate('stationForMaterial');
+
+        console.log(deletedLoadUnloadTime)
+        res.status(200).json(deletedLoadUnloadTime);
+    } catch (error) {
+        console.error('Error deleting single loadunload time:', error);
+        res.status(400).json({ error: error.message });
+    }
+}
+
+const editLoadUnloadTime = async (req, res) => {
+    const { id } = req.query;
+    const { containerSize, stationForMaterial, loadedWithPallete, requiredTime } = req.body;
+    try {
+        await dbConnect();
+
+        // Check if the document exists
+        const existingEntry = await LOADUNLOADTIME.findById(id);
+        if (!existingEntry) {
+            return res.status(404).json({ error: "Load/Unload time entry not found" });
+        }
+
+        // Perform the update and return the updated document
+        const updatedLoadUnloadTime = await LOADUNLOADTIME.findByIdAndUpdate(
+            id,
+            { containerSize, stationForMaterial, loadedWithPallete, requiredTime },
+            { new: true } // Return the updated document
+        ).populate('stationForMaterial');
+
+        console.log('Updated LoadUnloadTime:', updatedLoadUnloadTime);
+        res.status(200).json(updatedLoadUnloadTime);
+
+    } catch (error) {
+        console.error('Error updating loadunload time:', error);
+        res.status(400).json({ error: error.message });
+    }
+}
+
 module.exports = {
     createLoadUnloadTime,
     getLoadUnloadTimes,
-    getSingleLoadUnloadTime
+    getSingleLoadUnloadTime,
+    deleteSingleLoadUnloadTime,
+    editLoadUnloadTime
 }
