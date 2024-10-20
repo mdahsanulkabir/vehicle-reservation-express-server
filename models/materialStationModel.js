@@ -8,7 +8,7 @@ const materialStationSchema = new Schema({
     },
     stationType: { 
         type: String,
-        enum: ['A', 'B', 'C', 'D'], 
+        enum: ['A', 'B', 'C', 'D', 'E', 'F'], 
         required: true 
     },
 }, { timestamps: true });

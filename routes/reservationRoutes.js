@@ -6,7 +6,7 @@ const { login } = require('../controllers/userControllers/loginLogoutController'
 const { handleRefreshToken } = require('../controllers/userControllers/refreshTokenController');
 const { getAllUsers } = require('../controllers/userControllers/getUserController');
 const { createDock, getDocks } = require('../controllers/dockControllers/dockController');
-const { createLoadUnloadTime, getLoadUnloadTimes, getSingleLoadUnloadTime } = require('../controllers/loadUnloadTimeControllers/loadUnloadTimeController');
+const { createLoadUnloadTime, getLoadUnloadTimes, getSingleLoadUnloadTime, deleteSingleLoadUnloadTime, editLoadUnloadTime } = require('../controllers/loadUnloadTimeControllers/loadUnloadTimeController');
 const { getMaterialStationDefinitions, createMaterialStationDefinition } = require('../controllers/materialStationControllers/materialStationController');
 const { getBookings, createBooking } = require('../controllers/bookingControllers/bookingController');
 const { changePassword } = require('../controllers/userControllers/changePasswordController');
@@ -35,6 +35,8 @@ router.get("/dock", getDocks)
 router.post("/loadUnloadTime", createLoadUnloadTime);
 router.get("/loadUnloadTimes", getLoadUnloadTimes)
 router.get("/getSingleLoadUnloadTime", getSingleLoadUnloadTime)
+router.delete("/deleteSingleLoadUnloadTime", deleteSingleLoadUnloadTime)
+router.patch("/editLoadUnloadTime", editLoadUnloadTime)
 
 router.post("/materialStation", createMaterialStationDefinition);
 router.get("/materialStation", getMaterialStationDefinitions)
