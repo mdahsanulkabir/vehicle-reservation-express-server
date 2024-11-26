@@ -10,6 +10,7 @@ const { createLoadUnloadTime, getLoadUnloadTimes, getSingleLoadUnloadTime, delet
 const { getMaterialStationDefinitions, createMaterialStationDefinition } = require('../controllers/materialStationControllers/materialStationController');
 const { getBookings, createBooking } = require('../controllers/bookingControllers/bookingController');
 const { changePassword } = require('../controllers/userControllers/changePasswordController');
+const { resetPassword } = require('../controllers/userControllers/resetPassword');
 
 
 const router = express.Router();
@@ -45,5 +46,6 @@ router.post("/booking", createBooking);
 router.get("/booking", getBookings)
 
 router.post('/change-password', changePassword)
+router.post('/reset-password', resetPassword)
 
 module.exports = router;

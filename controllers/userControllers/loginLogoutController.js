@@ -63,7 +63,7 @@ const login = async (req, res) => {
             res.status(401).json({'Error': `User ${user.userId} is unauthenticated.`})
         }
     } catch (err) {
-        res.status(500).json({ 'message': err.message });
+        res.status(401).json({ 'message': err.message });
     }
 }
 
