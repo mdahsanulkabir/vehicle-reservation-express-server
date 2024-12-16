@@ -8,7 +8,7 @@ const { getAllUsers } = require('../controllers/userControllers/getUserControlle
 const { createDock, getDocks } = require('../controllers/dockControllers/dockController');
 const { createLoadUnloadTime, getLoadUnloadTimes, getSingleLoadUnloadTime, deleteSingleLoadUnloadTime, editLoadUnloadTime } = require('../controllers/loadUnloadTimeControllers/loadUnloadTimeController');
 const { getMaterialStationDefinitions, createMaterialStationDefinition } = require('../controllers/materialStationControllers/materialStationController');
-const { getBookings, createBooking } = require('../controllers/bookingControllers/bookingController');
+const { getBookings, createBooking, getBookingsByDate, deleteBookingById } = require('../controllers/bookingControllers/bookingController');
 const { changePassword } = require('../controllers/userControllers/changePasswordController');
 const { resetPassword } = require('../controllers/userControllers/resetPassword');
 
@@ -44,6 +44,8 @@ router.get("/materialStation", getMaterialStationDefinitions)
 
 router.post("/booking", createBooking);
 router.get("/booking", getBookings)
+router.get("/bookings-by-date", getBookingsByDate)
+router.delete("/deleteReservation", deleteBookingById)
 
 router.post('/change-password', changePassword)
 router.post('/reset-password', resetPassword)
